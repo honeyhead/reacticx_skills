@@ -10,14 +10,11 @@ npx skills add https://github.com/honeyhead/reacticx_skills --skill reacticx
 ```
 
 ### Manual Installation
-
-**Claude Code:**
 ```bash
+# Claude Code
 cp -r reacticx/ /path/to/your-project/.claude/skills/reacticx/
-```
 
-**OpenCode / Universal agents:**
-```bash
+# OpenCode / Codex / other agents
 cp -r reacticx/ /path/to/your-project/.agents/skills/reacticx/
 ```
 
@@ -36,8 +33,9 @@ reacticx_skills/
 │       ├── components-navigation.md   # 13 navigation/layout components
 │       ├── components-inputs.md       # 13 input/control components
 │       └── components-display.md      # 28 display/feedback components
-├── .claude/skills/reacticx/           # Claude Code auto-detection
-└── .agents/skills/reacticx/           # Universal agent path
+```
+
+Installed via `npx skills add`, the tool auto-places it in the correct agent directory (`.claude/skills/`, `.agents/skills/`, etc.).
 ```
 
 ## Component Coverage
