@@ -1,59 +1,44 @@
 # Reacticx Skills for AI Coding Agents
 
-A comprehensive Claude Code / OpenCode skill for the **Reacticx** React Native component library. This skill provides AI coding agents with complete reference documentation for 90+ production-ready animated components.
-
-## What is Reacticx?
-
-[Reacticx](https://www.reacticx.com) is a headless, animation-focused component library for React Native featuring 60+ production-ready components with smooth 60fps animations built on React Native Reanimated and Skia.
-
-## What is this repo?
-
-This repository contains an **AI agent skill file** that can be used with:
-
-- **Claude Code** (Anthropic's CLI)
-- **OpenCode** or any AI coding tool that supports markdown skill files
-
-When loaded, the skill gives your AI assistant full knowledge of:
-
-- All Reacticx components (90+)
-- Props/API reference for each component
-- Installation commands and dependencies
-- Usage examples and patterns
-- Best practices
+AI agent skill for the **Reacticx** React Native component library (90+ production-ready animated components).
 
 ## Installation
 
-### For Claude Code
-
-**Option 1: Clone into your project**
+### Using `npx skills` (Recommended)
 ```bash
-# In your React Native project root
-mkdir -p .claude/skills
-curl -o .claude/skills/reacticx.md https://raw.githubusercontent.com/honeyhead/reacticx_skills/main/skills/reacticx.md
+npx skills add https://github.com/honeyhead/reacticx_skills --skill reacticx
 ```
 
-**Option 2: Clone the full repo**
+### Manual Installation
+
+**Claude Code:**
 ```bash
-git clone https://github.com/honeyhead/reacticx_skills.git
-cp reacticx_skills/skills/reacticx.md /path/to/your-project/.claude/skills/
+cp -r reacticx/ /path/to/your-project/.claude/skills/reacticx/
 ```
 
-**Option 3: Use the `.claude/skills` directory directly**
+**OpenCode / Universal agents:**
 ```bash
-# Clone this repo, then symlink or copy the .claude directory
-cp -r reacticx_skills/.claude/skills/reacticx.md ~/.claude/skills/
+cp -r reacticx/ /path/to/your-project/.agents/skills/reacticx/
 ```
 
-### For OpenCode
+## Skill Structure
 
-Copy the skill file to your OpenCode skills directory:
-```bash
-cp skills/reacticx.md /path/to/opencode/skills/
 ```
-
-### Manual Setup
-
-Simply copy `skills/reacticx.md` into whatever directory your AI coding tool reads skill files from.
+reacticx_skills/
+├── README.md
+├── reacticx/                          # Canonical skill source
+│   ├── SKILL.md                       # Main skill (178 lines)
+│   └── references/                    # Loaded on-demand by category
+│       ├── shaders.md                 # 8 shader components
+│       ├── texts.md                   # 6 text animation components
+│       ├── micro-interactions.md      # 9 micro interaction components
+│       ├── components-carousels.md    # 13 carousel components
+│       ├── components-navigation.md   # 13 navigation/layout components
+│       ├── components-inputs.md       # 13 input/control components
+│       └── components-display.md      # 28 display/feedback components
+├── .claude/skills/reacticx/           # Claude Code auto-detection
+└── .agents/skills/reacticx/           # Universal agent path
+```
 
 ## Component Coverage
 
@@ -62,52 +47,20 @@ Simply copy `skills/reacticx.md` into whatever directory your AI coding tool rea
 | **Shaders** | 8 | Aurora, Mesh Gradient, Skia Ripple |
 | **Texts** | 6 | Animated Text, Gooey Text, Fade Text |
 | **Micro Interactions** | 9 | Gooey Switch, Elastic Slider, Hamburger |
-| **Components** | 67+ | Accordion, Toast, Picker, Carousel variants |
+| **Carousels** | 13 | Parallax, Tilt, Cinematic, Vertical Flow |
+| **Navigation** | 13 | Bottom Sheet, Dynamic Island, Tabs |
+| **Inputs** | 13 | Button, Picker, OTP, Switch, Search Bar |
+| **Display** | 28 | Toast, Avatar, Shimmer, Progress, Glow |
 | **Total** | **90+** | |
 
-## Skill Structure
+## Progressive Disclosure
 
-```
-reacticx_skills/
-├── README.md                          # This file
-├── .claude/
-│   └── skills/
-│       └── reacticx.md               # For Claude Code (project-level)
-└── skills/
-    └── reacticx.md                    # Universal skill file
-```
-
-## Usage Example
-
-Once the skill is installed, your AI agent can:
-
-```
-You: "Add a gooey switch toggle to my settings screen"
-Agent: [Uses skill knowledge to provide correct import, props, and usage]
-```
-
-```
-You: "Create a carousel with parallax effect for my image gallery"
-Agent: [Knows ParallaxCarousel component, its props, dependencies, and setup]
-```
-
-## Updating
-
-The skill was generated from the official Reacticx documentation at https://www.reacticx.com/docs. To update:
-
-1. Pull the latest version of this repo
-2. Copy the updated skill file to your project
-
-## Contributing
-
-If you find missing components or incorrect props, please open an issue or PR.
+The skill uses progressive context loading per the Anthropic skill-creator guidelines:
+1. **SKILL.md** (178 lines) - Always loaded: setup, CLI, component index
+2. **references/** - Loaded on-demand when agent needs specific component details
 
 ## Credits
 
-- **Reacticx Library**: Created by [@rit3zh](https://github.com/rit3zh)
-- **Skill Generation**: Automated with Claude Code Agent Teams
-- **Documentation Source**: https://www.reacticx.com/docs
-
-## License
-
-This skill file is a documentation reference derived from the Reacticx open-source project. The Reacticx library itself is maintained by its original author.
+- **Reacticx Library**: [@rit3zh](https://github.com/rit3zh)
+- **Docs Source**: https://www.reacticx.com/docs
+- **Skill Generation**: Claude Code Agent Teams (Orchestrator + 5 Workers + Reviewer)
