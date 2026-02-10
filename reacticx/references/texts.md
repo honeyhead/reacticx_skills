@@ -90,6 +90,11 @@ npx reacticx add curved-marquee
 | `textColor` | `string` | `"#ffffff"` | Text color |
 | `fontSize` | `number` | `100` | Font size |
 | `copies` | `number` | `50` | Text repetitions |
+```tsx
+import { CurvedMarquee } from "@/components/organisms/curved-marquee";
+
+<CurvedMarquee text="Hello World" speed={500} curve={-500} fontSize={80} textColor="#fff" />
+```
 
 ## Staggered Text
 **Deps:** `react-native-reanimated`, `@shopify/react-native-skia`

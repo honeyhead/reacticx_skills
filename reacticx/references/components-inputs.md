@@ -1,5 +1,20 @@
 # Input & Control Components
 
+## Contents
+- [Animated Input Bar](#animated-input-bar)
+- [Button](#button)
+- [CheckBox](#checkbox)
+- [Flip Card](#flip-card)
+- [OTP Input](#otp-input)
+- [Picker](#picker)
+- [Ruler](#ruler)
+- [Scrollable Search](#scrollable-search)
+- [Search Bar](#search-bar)
+- [Seekbar](#seekbar)
+- [Stepper](#stepper)
+- [Switch](#switch)
+- [Theme Switch](#theme-switch)
+
 ## Animated Input Bar
 **Deps:** `react-native-reanimated`, `expo-blur`
 ```bash
@@ -39,6 +54,9 @@ npx reacticx add button
 | `animationDuration` | `number` | `250` | Animation ms |
 | `disabled` | `boolean` | false | Disabled state |
 | `showLoadingIndicator` | `boolean` | false | Show spinner |
+| `loadingText` | `string` | -- | Loading display text |
+| `loadingTextColor` | `string` | -- | Loading text color |
+| `renderLoadingIndicator` | `function` | -- | Custom loading indicator |
 ```tsx
 import { Button } from "@/components/base/button";
 
@@ -61,6 +79,7 @@ npx reacticx add check-box
 | `checkmarkColor` | `string` | -- | Checkmark color |
 | `stroke` | `number` | `1.5` | Stroke width |
 | `size` | `number` | -- | Checkbox size |
+| `onPress` | `function` | -- | Toggle callback (wrap in Pressable) |
 
 ## Flip Card
 **Deps:** `react-native-reanimated`, `expo-haptics`, `@sbaiahmed1/react-native-blur`
@@ -76,6 +95,8 @@ Compound: `FlipCard`, `FlipCard.Front`, `FlipCard.Back`, `FlipCard.Trigger`
 | `animationDuration` | `number` | `600` | Flip duration ms |
 | `enableHaptics` | `boolean` | `true` | Haptic feedback |
 | `scaleOnPress` | `boolean` | `true` | Scale on press |
+| `blurTint` | `any` | `"light"` | Blur overlay tint |
+| `blurIntensity` | `number` | `90` | Blur effect intensity |
 ```tsx
 import { FlipCard } from "@/components";
 

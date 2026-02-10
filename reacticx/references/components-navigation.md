@@ -1,5 +1,20 @@
 # Navigation & Layout Components
 
+## Contents
+- [Accordion](#accordion)
+- [Bottom Sheet](#bottom-sheet)
+- [Bottom Sheet Stack](#bottom-sheet-stack)
+- [Curved Bottom Tabs](#curved-bottom-tabs)
+- [Dialog](#dialog)
+- [Disclosure Group](#disclosure-group)
+- [Dropdown](#dropdown)
+- [Dynamic Island](#dynamic-island)
+- [Morphing Tab Bar](#morphing-tab-bar)
+- [Segmented Control](#segmented-control)
+- [Split View](#split-view)
+- [Stack Aware Tabs](#stack-aware-tabs)
+- [Tabs](#tabs)
+
 ## Accordion
 **Deps:** `react-native-reanimated`, `expo-haptics`, `@sbaiahmed1/react-native-blur`
 ```bash
@@ -107,7 +122,7 @@ import { CurvedBottomTabs } from "@/components/base/curved-bottom-tabs";
 ```bash
 npx reacticx add dialog
 ```
-Compound: `Dialog`, `Dialog.Trigger`, `Dialog.Backdrop`, `Dialog.Content`, `Dialog.Close`
+Compound: `Dialog`, `Dialog.Trigger`, `Dialog.Backdrop`, `Dialog.Content`, `Dialog.Close` (`asChild` prop clones press to child)
 
 | Prop (Backdrop) | Type | Default | Description |
 |------|------|---------|-------------|
@@ -143,6 +158,15 @@ Compound: `DisclosureGroup`, `DisclosureGroup.Trigger`, `DisclosureGroup.Items`,
 | `maxHeight` | `number` | `400` | Max scrollable height |
 | `scrollable` | `boolean` | `true` | Enable scroll |
 | `useBlur` | `boolean` | `false` | Blur overlay |
+```tsx
+<DisclosureGroup>
+  <DisclosureGroup.Trigger><Text>More Options</Text></DisclosureGroup.Trigger>
+  <DisclosureGroup.Items maxHeight={300}>
+    <DisclosureGroup.Item onPress={() => {}}><Text>Edit</Text></DisclosureGroup.Item>
+    <DisclosureGroup.Item onPress={() => {}}><Text>Delete</Text></DisclosureGroup.Item>
+  </DisclosureGroup.Items>
+</DisclosureGroup>
+```
 
 ## Dropdown
 **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `react-native-worklets`, `expo-haptics`
@@ -235,6 +259,7 @@ npx reacticx add split-view
 | `initialTopSectionHeight` | `number` | Required | Initial top height |
 | `minSectionHeight` | `number` | Required | Min section height |
 | `maxTopSectionHeight` | `number` | Required | Max top height |
+| `velocityThreshold` | `number` | Required | Snap velocity threshold |
 | `springConfig` | `SpringConfig` | Required | Spring physics |
 | `renderTopItem`/`renderBottomItem` | `function` | Required | Item renderers |
 ```tsx
@@ -281,3 +306,14 @@ npx reacticx add tabs
 | `inactiveColor` | `string` | `"#666"` | Inactive color |
 | `underlineColor` | `string` | `"#007AFF"` | Underline color |
 | `underlineHeight` | `number` | `3` | Underline height |
+```tsx
+import { TopTabs } from "@/components/base/tabs";
+
+<TopTabs
+  tabs={[
+    { id: "1", title: "For You", contentComponent: <View><Text>Content 1</Text></View> },
+    { id: "2", title: "Trending", contentComponent: <View><Text>Content 2</Text></View> },
+  ]}
+  activeColor="#fff" inactiveColor="#555" underlineColor="#fff"
+/>
+```

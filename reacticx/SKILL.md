@@ -1,6 +1,6 @@
 ---
 name: reacticx
-description: React Native component library reference for Reacticx - 90+ production-ready animated components with 60fps animations built on Reanimated and Skia. Use when developing React Native apps that need animated UI components including shaders (Aurora, MeshGradient), text animations (GooeyText, FadeText), carousels (Parallax, Tilt, Cinematic), navigation (BottomSheet, DynamicIsland, MorphingTabBar), inputs (Picker, OTP, SearchBar), micro interactions (GooeySwitch, ElasticSlider), or any Reacticx component. Triggers on mentions of reacticx, reactix, or requests for animated React Native components.
+description: React Native animated component library reference for Reacticx - 90+ production-ready components with Reanimated and Skia. Triggers on reacticx, reactix, or requests for animated React Native UI components (shaders, carousels, bottom sheets, toggles, pickers, loaders, etc).
 ---
 
 # Reacticx Component Library
@@ -126,8 +126,31 @@ Read [references/components-inputs.md](references/components-inputs.md) when wor
 | Switch | `switch` |
 | Theme Switch | `theme-switch` |
 
-### Display & Feedback (28)
-Read [references/components-display.md](references/components-display.md) when working with loaders, progress indicators, avatars, badges, or display components.
+### Loaders (6)
+Read [references/display-loaders.md](references/display-loaders.md) when working with loading indicators.
+
+| Component | Install Name |
+|-----------|-------------|
+| Circle Loader | `circle-loader` |
+| Circular Loader | `circular-loader` |
+| Orbitdot Loader | `orbiting-dots` |
+| Pulsing Loader | `pulsing-dots` |
+| Rotating Square | `rotating-square` |
+| Spinner Arc | `spinner-arc` |
+
+### Progress & Transitions (5)
+Read [references/display-progress.md](references/display-progress.md) when working with progress indicators or transition effects.
+
+| Component | Install Name |
+|-----------|-------------|
+| Circular Progress | `circular-progress` |
+| Progress | `progress` |
+| Rolling Counter | `rolling-counter` |
+| Shimmer | `shimmer` |
+| Shimmer Wave Text | `shimmer-wave` |
+
+### Content & Display (10)
+Read [references/display-content.md](references/display-content.md) when working with avatars, badges, headers, toast, or display components.
 
 | Component | Install Name |
 |-----------|-------------|
@@ -136,26 +159,23 @@ Read [references/components-display.md](references/components-display.md) when w
 | Animated Masked Text | `animated-masked-text` |
 | Avatar / Avatar Group | `avatar` / `avatar-group` |
 | Badge | `badge` |
-| Circle Loader / Circular Loader | `circle-loader` / `circular-loader` |
-| Circular Progress | `circular-progress` |
 | Empty State | `empty-state` |
+| QR Code | `qr-code` |
+| Title | `title` |
+| Toast | `toast` |
+
+### Effects & Visuals (7)
+Read [references/display-effects.md](references/display-effects.md) when working with glow, ripple, cards, or visual effect components.
+
+| Component | Install Name |
+|-----------|-------------|
 | Glow | `glow` |
 | Infinite Menu | `infinite-menu` |
 | Lanyard | `lanyard` |
-| Orbitdot Loader | `orbiting-dots` |
 | Pagination | `pagination` |
-| Progress | `progress` |
-| Pulsing Loader | `pulsing-dots` |
-| QR Code | `qr-code` |
 | Radial Intro | `radial-intro` |
 | Ripple | `ripple` |
-| Rolling Counter | `rolling-counter` |
-| Rotating Square | `rotating-square` |
-| Shimmer / Shimmer Wave Text | `shimmer` / `shimmer-wave` |
-| Spinner Arc | `spinner-arc` |
 | Stack Cards | `stack-cards` |
-| Title | `title` |
-| Toast | `toast` |
 
 ## Common Dependencies
 
@@ -176,3 +196,4 @@ Read [references/components-display.md](references/components-display.md) when w
 - Skia components require native module installation
 - All animations target 60fps via Reanimated's UI thread
 - Some blur effects (`expo-blur`) work best on iOS
+- Import paths follow `@/components/{layer}/{name}` where layer is `base`, `molecules`, `organisms`, or `templates`

@@ -17,6 +17,16 @@ npx reacticx add animated-scroll-progress
 | `fabBackgroundColor` | `string` | Required | Initial bg color |
 | `fabEndBackgroundColor` | `string` | Required | End bg color |
 | `fabBorderRadius` | `number` | `100` | Corner radius |
+```tsx
+<AnimatedScrollProgress
+  fabWidth={280} fabHeight={56} fabBottomOffset={50}
+  fabBackgroundColor="#151515" fabEndBackgroundColor="#fff" fabBorderRadius={28}
+  renderInitialContent={() => <Text style={{ color: "#fff" }}>Chapter 1</Text>}
+  renderEndContent={() => <Text style={{ color: "#000" }}>Well done!</Text>}
+>
+  {/* Scrollable content */}
+</AnimatedScrollProgress>
+```
 
 ## Animated Theme Toggle
 **Deps:** `react-native-reanimated`, `react-native-svg`

@@ -1,5 +1,22 @@
 # Carousel & Scrollable Components
 
+## Contents
+- [Blur Carousel](#blur-carousel)
+- [Cinematic Carousel](#cinematic-carousel)
+- [Circular Carousel](#circular-carousel)
+- [Circular List](#circular-list)
+- [Material Carousel](#material-carousel)
+- [Parallax Carousel](#parallax-carousel)
+- [Rotate Carousel](#rotate-carousel)
+- [Scale Carousel](#scale-carousel)
+- [Tilt Carousel](#tilt-carousel)
+- [Vertical Flow Carousel](#vertical-flow-carousel)
+- [Vertical Page Carousel](#vertical-page-carousel)
+- [Marquee](#marquee)
+- [Matched Geometry](#matched-geometry)
+
+> Most carousels follow the same pattern: `data` array + `renderItem` callback. One representative example shown below for Parallax Carousel applies to all carousel variants.
+
 ## Blur Carousel
 **Deps:** `react-native-reanimated`, `@sbaiahmed1/react-native-blur`
 ```bash
@@ -73,6 +90,25 @@ npx reacticx add parallax-carousel
 | `pagingEnabled` | `boolean` | `true` | Snap paging |
 
 Requires `GestureHandlerRootView`.
+
+```tsx
+import { ParallaxCarousel } from "@/components/molecules/parallax-carousel";
+
+const DATA = [
+  { image: { uri: "https://example.com/1.jpg" } },
+  { image: { uri: "https://example.com/2.jpg" } },
+];
+
+<GestureHandlerRootView style={{ flex: 1 }}>
+  <ParallaxCarousel
+    data={DATA}
+    parallaxIntensity={0.9}
+    renderItem={({ item }) => (
+      <Image source={item.image} style={{ width: "100%", height: "100%", borderRadius: 20 }} />
+    )}
+  />
+</GestureHandlerRootView>
+```
 
 ## Rotate Carousel
 **Deps:** `react-native-reanimated`, `expo-haptics`, `react-native-worklets`, `@sbaiahmed1/react-native-blur`

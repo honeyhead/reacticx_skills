@@ -37,12 +37,32 @@ Glowing energy orb with shader-based rendering and customizable glow parameters.
 npx reacticx add siri-orb
 ```
 Siri-inspired orb animation using Skia shaders with fluid motion effects.
+```tsx
+import { UnstableSiriOrb } from "@/components/organisms/unstable_siri_orb";
+
+<UnstableSiriOrb
+  size={280} speed={1}
+  primaryColor={{ r: 0.45, g: 0.65, b: 1.0 }}
+  secondaryColor={{ r: 0.0, g: 0.85, b: 0.8 }}
+/>
+```
 
 ## Mesh Gradient
 ```bash
 npx reacticx add mesh-gradient
 ```
 Animated mesh gradient background with customizable control points and colors.
+```tsx
+import { AnimatedMeshGradient } from "@/components/organisms/mesh-gradient";
+import { IMeshGradientColor } from "@/components/organisms/mesh-gradient/types";
+
+const colors: IMeshGradientColor[] = [
+  { r: 0.9, g: 0.5, b: 255 / 0.92 },
+  { r: 0.95, g: 0.4, b: 255 / 0.85 },
+];
+
+<AnimatedMeshGradient speed={2} noise={0.5} animated={true} colors={colors} />
+```
 
 ## Grainy Gradient
 ```bash
