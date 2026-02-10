@@ -759,92 +759,214 @@ npx reacticx add button
 ---
 
 ### Bottom Sheet
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `react-native-worklets`
 ```bash
 npx reacticx add bottom-sheet
 ```
-Draggable bottom sheet with snap points and gesture handling.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | Required | Sheet content |
+| `snapPoints` | `array` | Required | Snap position values |
+| `enableBackdrop` | `boolean` | `true` | Show overlay |
+| `backdropOpacity` | `number` | `0.5` | Backdrop transparency |
+| `dismissOnBackdropPress` | `boolean` | `true` | Close on backdrop tap |
+| `dismissOnSwipeDown` | `boolean` | `true` | Close on swipe down |
+| `onClose` | `function` | -- | Close callback |
+| `showHandle` | `boolean` | `true` | Show drag handle |
+| `backgroundColor` | `string` | `"#FFFFFF"` | Sheet bg color |
+| `borderRadius` | `number` | `24` | Corner radius |
+| `enableDynamicSizing` | `boolean` | `false` | Dynamic height |
+
+**Methods (ref):** `snapToIndex(i)`, `expand()`, `collapse()`, `close()`, `getCurrentIndex()`
+```tsx
+const sheetRef = useRef<BottomSheetMethods>(null);
+<BottomSheet ref={sheetRef} snapPoints={["50%","90%"]} backgroundColor="#1c1c1e" borderRadius={28}>
+  <View style={{ padding: 20 }}><Text>Content</Text></View>
+</BottomSheet>
+```
 
 ---
 
 ### Bottom Sheet Stack
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`
 ```bash
 npx reacticx add bottom-sheet-stack
 ```
-Stacked bottom sheets with independent snap behavior.
+Wrap app with `<BottomSheetStackProvider>`. Use hooks:
+- `useBottomSheet()` returns `{ present(component), dismiss() }`
+- `useBottomSheetStack()` returns `{ pushSheet(config), popSheet(id?), popToRoot(), getStackDepth() }`
+```tsx
+const { present } = useBottomSheet();
+present(<BottomSheet snapPoints={['50%']}><Text>Content</Text></BottomSheet>);
+```
 
 ---
 
 ### CheckBox
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-svg`
 ```bash
 npx reacticx add check-box
 ```
-Animated checkbox with customizable check animation.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Checkbox state |
+| `checkmarkColor` | `string` | -- | Checkmark color |
+| `stroke` | `number` | `1.5` | Stroke width |
+| `size` | `number` | -- | Checkbox size |
+```tsx
+<CheckBox checked={checked} checkmarkColor="#fff" stroke={5.5} size={60} />
+```
 
 ---
 
 ### Cinematic Carousel
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@sbaiahmed1/react-native-blur`
 ```bash
 npx reacticx add cinematic-carousel
 ```
-Cinematic-style horizontal carousel with depth effects.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `array` | Required | Carousel items |
+| `renderItem` | `function` | Required | Item renderer |
+| `spacing` | `number` | `20` | Item spacing |
+| `itemWidth` | `number` | `SCREEN_WIDTH*0.75` | Item width |
+
+3D perspective transforms with dynamic blur and scale/opacity effects.
 
 ---
 
 ### Circle Loader
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-svg`
 ```bash
 npx reacticx add circle-loader
 ```
-Circular loading animation with customizable styling.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `dotColor` | `string` | `"#007AFF"` | Dot color |
+| `dotRadius` | `number` | `6` | Dot radius |
+| `dotSpacing` | `number` | `20` | Dot spacing |
+| `duration` | `number` | `950` | Animation ms |
+```tsx
+<CircleLoadingIndicator dotColor="#fff" duration={500} dotSpacing={8} />
+```
 
 ---
 
 ### Circular Carousel
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-blur`, `react-native-worklets`
 ```bash
 npx reacticx add circular-carousel
 ```
-Carousel with circular layout arrangement.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `array` | Required | Carousel items |
+| `renderItem` | `function` | Required | Item renderer |
+| `spacing` | `number` | `20` | Item spacing |
+| `itemWidth` | `number` | `SCREEN_WIDTH*0.75` | Item width |
+| `onIndexChange` | `function` | Optional | Index callback |
+
+Cards rotate, scale, and blur in circular style.
 
 ---
 
 ### Circular List
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-worklets`, `expo-blur`, `expo-haptics`
 ```bash
 npx reacticx add circular-list
 ```
-Circular scrolling list component.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `string[]` | Required | Image URI array |
+| `scaleEnabled` | `boolean` | `false` | Enable scale animation |
+```tsx
+<CircularList data={["https://...","https://..."]} scaleEnabled={true} />
+```
 
 ---
 
 ### Circular Loader
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-svg`
 ```bash
 npx reacticx add circular-loader
 ```
-Circular loading indicator with animation.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `number` | `40` | Loader diameter |
+| `strokeWidth` | `number` | `4` | Stroke width |
+| `activeColor` | `string` | `"#000000"` | Arc color |
+| `duration` | `number` | `1000` | Animation ms |
+| `enableBlur` | `boolean` | `false` | Motion blur |
+| `gradientLength` | `number` | `20` | Gradient fade % |
+```tsx
+<CircularLoader activeColor="#fff" gradientLength={50} enableBlur />
+```
 
 ---
 
 ### Curved Bottom Tabs
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@react-navigation/bottom-tabs`, `react-native-svg`
 ```bash
 npx reacticx add curved-bottom-tabs
 ```
-Curved tab bar navigation with smooth transitions.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tabs` | `Tab[]` | Required | `{ id, title, icon, badge? }` array |
+| `currentIndex` | `number` | Required | Active tab |
+| `onPress` | `function` | Required | Tab select callback |
+| `gradient` | `[string,string]` | `["#121212","#1A1A1A"]` | Background gradient |
+| `activeColor` | `string` | `"#ffffff"` | Active icon color |
+| `inactiveColor` | `string` | `"#cccccc"` | Inactive icon color |
+| `hideWhenKeyboardShown` | `boolean` | `false` | Auto-hide on keyboard |
+
+Integrates with Expo Router's `Tabs` navigator. Requires `GestureHandlerRootView`.
 
 ---
 
 ### Dialog
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-blur`, `react-native-worklets`
 ```bash
 npx reacticx add dialog
 ```
-Animated dialog/modal with customizable transitions.
+Compound: `Dialog`, `Dialog.Trigger`, `Dialog.Backdrop`, `Dialog.Content`, `Dialog.Close`
+
+| Prop (Backdrop) | Type | Default | Description |
+|------|------|---------|-------------|
+| `blurAmount` | `number` | `20` | Blur intensity |
+| `backgroundColor` | `string` | `"rgba(0,0,0,0.5)"` | Overlay color |
+
+Open: 550ms, Close: 650ms. Tapping outside dismisses.
+```tsx
+<Dialog>
+  <Dialog.Trigger><Pressable><Text>Open</Text></Pressable></Dialog.Trigger>
+  <Dialog.Backdrop blurAmount={25} />
+  <Dialog.Content>
+    <Text>Modal Content</Text>
+    <Dialog.Close asChild><Pressable><Text>Close</Text></Pressable></Dialog.Close>
+  </Dialog.Content>
+</Dialog>
+```
+
+---
+
+### Dropdown
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `react-native-worklets`, `expo-haptics`
+```bash
+npx reacticx add dropdown
+```
+Compound: `Dropdown`, `Dropdown.Trigger`, `Dropdown.Content`, `Dropdown.Item`
+
+| Prop (Content) | Type | Default | Description |
+|------|------|---------|-------------|
+| `position` | `"auto"|"top"|"bottom"|"left"|"right"` | `"auto"` | Menu position |
+```tsx
+<Dropdown>
+  <Dropdown.Trigger><Text>Menu</Text></Dropdown.Trigger>
+  <Dropdown.Content>
+    <Dropdown.Item onPress={() => {}}><Text>Edit</Text></Dropdown.Item>
+    <Dropdown.Item onPress={() => {}}><Text>Delete</Text></Dropdown.Item>
+  </Dropdown.Content>
+</Dropdown>
+```
 
 ---
 
