@@ -1396,128 +1396,273 @@ npx reacticx add rotate-carousel
 ---
 
 ### Rotating Square
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-svg`
 ```bash
 npx reacticx add rotating-square
 ```
-Animated rotating square loading indicator.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `color` | `string` | `"#FF5722"` | Square color |
+| `squareSize` | `number` | `10` | Square dimensions |
+| `spacing` | `number` | `20` | Distance from center |
+| `size` | `number` | `60` | SVG viewBox size |
+| `duration` | `number` | `1000` | Animation cycle ms |
+| `repeatCount` | `number` | `-1` | Loop count (-1=infinite) |
 
 ---
 
 ### Ruler
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-haptics`, `react-native-gesture-handler`, `react-native-worklets`, `@shopify/react-native-skia`
 ```bash
 npx reacticx add ruler
 ```
-Interactive ruler control with haptic feedback.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `height` | `number` | -- | Component height |
+| `width` | `number` | -- | Component width |
+| `minValue` | `number` | -- | Min selectable value |
+| `maxValue` | `number` | -- | Max selectable value |
+| `step` | `number` | -- | Tick increment |
+| `onValueChange` | `function` | -- | Value change callback |
+| `tickColor` | `string` | `"rgba(255,255,255,0.6)"` | Tick color |
+| `activeTickColor` | `string` | `"#00D4FF"` | Active tick color |
+| `cursorColor` | `string` | `"#00D4FF"` | Center cursor color |
+| `showCursor` | `boolean` | `true` | Show center cursor |
+| `enableHaptics` | `boolean` | `false` | Haptic feedback |
+```tsx
+<Ruler height={120} width={380} minValue={5} maxValue={50} step={18}
+  tickColor="rgba(255,255,255,0.3)" activeTickColor="#fff" cursorColor="#fff"
+  showCursor enableHaptics onValueChange={setValue} />
+```
 
 ---
 
 ### Scale Carousel
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-haptics`, `react-native-worklets`
 ```bash
 npx reacticx add scale-carousel
 ```
-Scale-based horizontal carousel with size transitions.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `array` | Required | Carousel items |
+| `renderItem` | `function` | Required | Item renderer |
+| `itemWidth` | `number` | screen width | Item width |
+| `itemHeight` | `number` | `height*0.75` | Item height |
+| `spacing` | `number` | `20` | Item gap |
+| `pagingEnabled` | `boolean` | `true` | Snap paging |
+| `scaleRange` | `[number,number,number]` | `[1.6,1,1.6]` | Scale [prev,center,next] |
+| `rotationRange` | `[number,number,number]` | `[15,0,-10]` | Rotation degrees |
 
 ---
 
 ### Scrollable Search
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-worklets`, `react-native-safe-area-context`, `expo-blur`
 ```bash
 npx reacticx add scrollable-search
 ```
-Search component with scroll-aware animations.
+Compound: `ScrollableSearch`, `ScrollableSearch.ScrollContent`, `ScrollableSearch.Overlay`, `ScrollableSearch.FocusedScreen`
+
+| Prop (ScrollContent) | Type | Default | Description |
+|------|------|---------|-------------|
+| `pullThreshold` | `number` | `80` | Pull distance for search activation |
+
+| Prop (Overlay) | Type | Default | Description |
+|------|------|---------|-------------|
+| `enableBlur` | `boolean` | `true` | Enable blur background |
+| `maxBlurIntensity` | `number` | `80` | Max blur intensity |
 
 ---
 
 ### Search Bar
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@expo/vector-icons`, `react-native-worklets`, `expo-blur`, `expo-symbols`
 ```bash
 npx reacticx add search-bar
 ```
-Animated search bar with expand/collapse transitions.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placeholder` | `string` | `"Search"` | Placeholder text |
+| `onSearch` | `function` | -- | Text change callback |
+| `tint` | `string` | `"#007AFF"` | Accent color |
+| `containerWidth` | `number` | `screenWidth-32` | Fixed width |
+| `focusedWidth` | `number` | -- | Focused width |
+| `enableWidthAnimation` | `boolean` | `true` | Animate on focus |
+| `centerWhenUnfocused` | `boolean` | `true` | Center content unfocused |
+| `renderLeadingIcons` | `function` | -- | Custom leading icon |
+| `renderTrailingIcons` | `function` | -- | Custom trailing icon |
+```tsx
+<SearchBar containerWidth={350} tint="#fff" />
+```
 
 ---
 
 ### Segmented Control
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-blur`, `react-native-worklets`, `react-native-gesture-handler`, `expo-haptics`
 ```bash
 npx reacticx add segmented-control
 ```
-iOS-style animated segmented control.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | Required | Segment content |
+| `onChange` | `function` | Required | Selection callback |
+| `currentIndex` | `number` | Required | Active segment |
+| `preset` | `string` | `"ios"` | Visual style |
+| `borderRadius` | `number` | `8` | Corner radius |
+| `disableScaleEffect` | `boolean` | `false` | Disable tap scale |
+```tsx
+<SegmentedControl currentIndex={index} onChange={setIndex} borderRadius={200}>
+  <Text>Tab 1</Text><Text>Tab 2</Text><Text>Tab 3</Text>
+</SegmentedControl>
+```
 
 ---
 
 ### Seekbar
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-worklets`, `react-native-gesture-handler`, `expo-haptics`
 ```bash
 npx reacticx add seekbar
 ```
-Animated seek/progress bar with drag interaction.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | Required | Progress 0-1 |
+| `onValueChange` | `function` | Required | Value callback |
+| `width` | `number` | `300` | Track width |
+| `height` | `number` | `8` | Track height |
+| `activeColor` | `string` | `"#FFFFFF"` | Fill color |
+| `inactiveColor` | `string` | `"rgba(255,255,255,0.3)"` | Track color |
+| `thumbSize` | `number` | `35` | Thumb diameter |
+| `showThumb` | `boolean` | `true` | Show thumb |
+| `tapToSeek` | `boolean` | `true` | Tap-to-seek |
+| `thumbScale` | `number` | `1.3` | Thumb scale on drag |
 
 ---
 
 ### Shimmer
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `expo-linear-gradient`
 ```bash
 npx reacticx add shimmer
 ```
-Shimmer loading placeholder effect.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isLoading` | `boolean` | `true` | Loading state |
+| `variant` | `"pulse"|"shimmer"` | `"shimmer"` | Animation style |
+| `direction` | `"leftToRight"|"rightToLeft"|"topToBottom"|"bottomToTop"` | `"leftToRight"` | Direction |
+| `preset` | `"dark"|"light"|"twitter"|"neutral"|"custom"` | `"dark"` | Color preset |
+| `duration` | `number` | `1500` | Animation ms |
+| `children` | `ReactNode` | -- | Content when loaded |
+
+Group support: `<ShimmerGroup isLoading={loading} preset="dark">` wraps multiple `<Shimmer>` children.
 
 ---
 
 ### Shimmer Wave Text
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@react-native-masked-view/masked-view`, `expo-linear-gradient`, `react-native-worklets`
 ```bash
 npx reacticx add shimmer-wave
 ```
-Shimmer wave animation flowing across text.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | default text | Text to display |
+| `textColor` | `string` | `"#212121"` | Text color |
+| `textStyle` | `TextStyle` | -- | Text styling |
+| `shimmerConfig` | `object` | `{}` | Shimmer animation config |
+| `floatConfig` | `object` | `{}` | Character float config |
+```tsx
+<ShimmerWaveText text="Try Reacticx!" textColor="#212121" textStyle={{ fontSize: 30 }} />
+```
 
 ---
 
 ### Spinner Arc
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-svg`
 ```bash
 npx reacticx add spinner-arc
 ```
-Arc-style loading spinner with rotation animation.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `number` | `40` | Spinner diameter |
+| `colorStart` | `string` | `"#FF4E4E"` | Gradient start |
+| `colorEnd` | `string` | `"#FF7A00"` | Gradient end |
+| `strokeWidth` | `number` | `4` | Arc stroke width |
+| `speed` | `number` | `1000` | Animation ms |
+| `backgroundColor` | `string` | `"#ddd"` | Background circle |
+| `arcLength` | `number` | `90` | Arc length degrees |
+```tsx
+<SpinnerArc arcLength={270} colorEnd="#6366f1" colorStart="#8b5cf6" size={64} speed={500} />
+```
 
 ---
 
 ### Split View
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `react-native-safe-area-context`
 ```bash
 npx reacticx add split-view
 ```
-Resizable split view layout with drag separator.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `topSectionItems` | `array` | Required | Top section data |
+| `bottomSectionItems` | `array` | Required | Bottom section data |
+| `bottomSectionTitle` | `string` | Required | Bottom title |
+| `initialTopSectionHeight` | `number` | Required | Initial top height |
+| `minSectionHeight` | `number` | Required | Min section height |
+| `maxTopSectionHeight` | `number` | Required | Max top height |
+| `velocityThreshold` | `number` | Required | Snap velocity |
+| `springConfig` | `SpringConfig` | Required | Spring physics |
+| `renderTopItem` | `function` | Required | Top item renderer |
+| `renderBottomItem` | `function` | Required | Bottom item renderer |
+
+Resizable split layout with drag gesture between two FlatList sections.
 
 ---
 
 ### Stack Aware Tabs
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `react-native-worklets`, `@expo/vector-icons`, `expo-haptics`, `expo-router`, `expo-blur`
 ```bash
 npx reacticx add stack-aware-tabs
 ```
-Tab navigation aware of navigation stack state.
+Modern bottom tab bar with animated focus scaling for Expo Router.
+
+Integrates with `<Tabs tabBar={(props) => <StackAwareTabBar {...props} />}>`. Requires `GestureHandlerRootView`.
 
 ---
 
 ### Stack Cards
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `expo-blur`
 ```bash
 npx reacticx add stack-cards
 ```
-Stacked card layout with swipe gestures.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `array` | Required | Card items |
+| `renderItem` | `function` | Required | Card renderer |
+| `visibleCount` | `number` | `4` | Visible card count |
+| `cardWidth` | `number` | `300` | Card width |
+| `cardHeight` | `number` | `300` | Card height |
+| `blurIntensity` | `number` | `40` | Background blur |
+| `useBlur` | `boolean` | `true` | Enable blur |
+
+Vertical fling gesture navigation between stacked cards.
 
 ---
 
 ### Stepper
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@expo/vector-icons`
 ```bash
 npx reacticx add stepper
 ```
-Animated stepper/quantity control.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | Required | Current value |
+| `onValueChange` | `function` | Required | Value callback |
+| `min` | `number` | `0` | Min value |
+| `max` | `number` | `100` | Max value |
+| `step` | `number` | `1` | Increment amount |
+| `disabled` | `boolean` | `false` | Disable |
+| `size` | `number` | `40` | Component height |
+| `activeBackgroundColor` | `string` | `"#D1D1D6"` | Pressed button color |
+| `inActiveBackgroundColor` | `string` | `"#ebebebff"` | Normal button color |
+```tsx
+<Stepper value={count} onValueChange={setCount} min={0} max={10} step={1} />
+```
 
 ---
 
@@ -1542,11 +1687,23 @@ npx reacticx add switch
 ---
 
 ### Tabs
-**Category:** Components
+**Category:** Components | **Deps:** `react-native-reanimated`, `@sbaiahmed1/react-native-blur`
 ```bash
 npx reacticx add tabs
 ```
-Animated tab component with customizable transitions.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tabs` | `Tab[]` | Required | `{ id, title?, titleComponent?, contentComponent? }` |
+| `activeColor` | `string` | `"#007AFF"` | Active tab color |
+| `inactiveColor` | `string` | `"#666"` | Inactive tab color |
+| `underlineColor` | `string` | `"#007AFF"` | Underline indicator color |
+| `underlineHeight` | `number` | `3` | Underline height |
+```tsx
+<TopTabs tabs={[
+  { id: "1", title: "Tab 1", contentComponent: <Text>Content 1</Text> },
+  { id: "2", title: "Tab 2", contentComponent: <Text>Content 2</Text> },
+]} activeColor="#fff" inactiveColor="#555" underlineColor="#fff" />
+```
 
 ---
 
