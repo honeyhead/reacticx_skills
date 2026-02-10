@@ -61,6 +61,18 @@ npx reacticx add bottom-sheet-stack
 Wrap app with `<BottomSheetStackProvider>`. Use hooks:
 - `useBottomSheet()` returns `{ present(component), dismiss() }`
 - `useBottomSheetStack()` returns `{ pushSheet(config), popSheet(id?), popToRoot(), getStackDepth() }`
+```tsx
+// Setup: wrap app with provider
+import { BottomSheetStackProvider, useBottomSheet } from '@/components/templates/bottom-sheet-stack';
+import BottomSheet from '@/components/templates/bottom-sheet';
+
+// In App root:
+<BottomSheetStackProvider><AppContent /></BottomSheetStackProvider>
+
+// In any component:
+const { present, dismiss } = useBottomSheet();
+present(<BottomSheet snapPoints={["75%"]} backgroundColor="#1c1c1e"><Content /></BottomSheet>);
+```
 
 ## Curved Bottom Tabs
 **Deps:** `react-native-reanimated`, `@react-navigation/bottom-tabs`, `react-native-svg`
@@ -78,6 +90,17 @@ npx reacticx add curved-bottom-tabs
 | `hideWhenKeyboardShown` | `boolean` | `false` | Auto-hide on keyboard |
 
 Integrates with Expo Router's `Tabs` navigator. Requires `GestureHandlerRootView`.
+```tsx
+import { Tabs } from "expo-router";
+import { CurvedBottomTabs } from "@/components/base/curved-bottom-tabs";
+
+<Tabs tabBar={(props) => <CurvedBottomTabs {...props} />}>
+  <Tabs.Screen name="home" options={{
+    title: "Home",
+    tabBarIcon: ({ focused }) => <Ionicons name={focused ? "home" : "home-outline"} size={20} color={focused ? "#fff" : "#B9B9B9"} />
+  }} />
+</Tabs>
+```
 
 ## Dialog
 **Deps:** `react-native-reanimated`, `expo-blur`, `react-native-worklets`
@@ -214,6 +237,21 @@ npx reacticx add split-view
 | `maxTopSectionHeight` | `number` | Required | Max top height |
 | `springConfig` | `SpringConfig` | Required | Spring physics |
 | `renderTopItem`/`renderBottomItem` | `function` | Required | Item renderers |
+```tsx
+import { SplitView } from "@/components/molecules/split-view";
+
+<SplitView
+  topSectionItems={notes} bottomSectionItems={tasks}
+  bottomSectionTitle="Tasks"
+  initialTopSectionHeight={300} minSectionHeight={10} maxTopSectionHeight={500}
+  velocityThreshold={800} springConfig={{ damping: 20, stiffness: 150, mass: 0.5 }}
+  containerBackgroundColor="#0a0a0a" sectionBackgroundColor="#141414"
+  dividerBackgroundColor="#0a0a0a" dragHandleColor="#333"
+  renderTopItem={({ item }) => <Text>{item.content}</Text>}
+  renderBottomItem={({ item }) => <Text>{item.label}</Text>}
+  topKeyExtractor={(item) => item.id} bottomKeyExtractor={(item) => item.id}
+/>
+```
 
 ## Stack Aware Tabs
 **Deps:** `react-native-reanimated`, `react-native-gesture-handler`, `@expo/vector-icons`, `expo-haptics`, `expo-router`, `expo-blur`
@@ -222,6 +260,14 @@ npx reacticx add stack-aware-tabs
 ```
 Bottom tab bar with animated focus scaling for Expo Router.
 Use: `<Tabs tabBar={(props) => <StackAwareTabBar {...props} />}>`
+```tsx
+import { Tabs } from "expo-router";
+import { StackAwareTabBar } from "@/components/base/stack-aware-tabs";
+
+<Tabs tabBar={(props) => <StackAwareTabBar {...props} />}>
+  <Tabs.Screen name="home" options={{ title: "Home", tabBarIcon: ({ focused }) => <Ionicons name={focused ? "home" : "home-outline"} size={20} /> }} />
+</Tabs>
+```
 
 ## Tabs
 **Deps:** `react-native-reanimated`, `@sbaiahmed1/react-native-blur`

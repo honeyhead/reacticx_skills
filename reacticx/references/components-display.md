@@ -10,6 +10,16 @@ npx reacticx add animated-chip
 | `chips` | `ChipItem[]` | Required | `{ label, icon, activeColor, labelColor, inActiveBackgroundColor }` |
 | `selectedIndex` | `number` | Optional | Selected index |
 | `onChange` | `function` | Optional | Selection callback |
+```tsx
+import { ChipGroup } from "@/components";
+
+const chips = [
+  { label: "All", activeColor: "#fff", inActiveBackgroundColor: "#1a1a1a", labelColor: "#000",
+    icon: () => <SymbolView name="square.grid.2x2.fill" size={18} tintColor={selected === 0 ? "#000" : "#555"} /> },
+];
+
+<ChipGroup chips={chips} selectedIndex={selected} onChange={setSelected} />
+```
 
 ## Animated Header ScrollView
 **Deps:** `react-native-reanimated`, `expo-linear-gradient`, `@react-native-masked-view/masked-view`, `expo-blur`, `react-native-safe-area-context`
@@ -117,6 +127,16 @@ npx reacticx add circular-progress
 | `strokeWidth` | `number` | `3` | Ring thickness |
 | `progressCircleColor` | `string` | `"white"` | Progress color |
 | `renderIcon` | `function` | Optional | Center icon |
+```tsx
+import { useSharedValue, withTiming, Easing } from "react-native-reanimated";
+import { CircularProgress } from "@/components/organisms/circular-progress";
+
+const progress = useSharedValue(0);
+useEffect(() => { progress.value = withTiming(72, { easing: Easing.bezier(0.95, 0.1, 0.95, 1), duration: 2000 }); }, []);
+
+<CircularProgress progress={progress} size={120} strokeWidth={12} progressCircleColor="#ff4757"
+  renderIcon={() => <FontAwesome name="heart" size={40} color="#ff4757" />} />
+```
 
 ## Empty State
 ```bash
@@ -288,6 +308,15 @@ npx reacticx add rolling-counter
 | `fontSize` | `number` | `48` | Font size |
 | `color` | `string` | `"#000"` | Text color |
 | `springConfig` | `object` | defaults | Spring config |
+```tsx
+import { useSharedValue } from "react-native-reanimated";
+import { RollingCounter } from "@/components/organisms/rolling-counter";
+
+const counter = useSharedValue(10);
+
+<RollingCounter value={counter} height={64} width={42} fontSize={52} color="#fff"
+  springConfig={{ stiffness: 110, damping: 14, mass: 0.5 }} />
+```
 
 ## Rotating Square
 **Deps:** `react-native-reanimated`, `react-native-svg`
@@ -316,6 +345,14 @@ npx reacticx add shimmer
 | `duration` | `number` | `1500` | Animation ms |
 
 Group: `<ShimmerGroup isLoading={loading}>` wraps multiple `<Shimmer>` children.
+```tsx
+import { ShimmerGroup, Shimmer } from "@/components";
+
+<ShimmerGroup isLoading={isLoading} preset="dark" duration={1000}>
+  <Shimmer style={{ width: 100, height: 100, borderRadius: 50 }}>{/* Loaded content */}</Shimmer>
+  <Shimmer style={{ width: 180, height: 28, borderRadius: 8 }}>{/* Loaded content */}</Shimmer>
+</ShimmerGroup>
+```
 
 ## Shimmer Wave Text
 **Deps:** `react-native-reanimated`, `@react-native-masked-view/masked-view`, `expo-linear-gradient`

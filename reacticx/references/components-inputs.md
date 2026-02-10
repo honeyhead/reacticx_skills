@@ -12,6 +12,14 @@ npx reacticx add animated-input-bar
 | `value` | `string` | Optional | Input value |
 | `onChangeText` | `function` | Optional | Text change callback |
 | `characterDelayIncrement` | `number` | `30` | Character stagger ms |
+```tsx
+import AnimatedInputBar from "@/components/base/animated-input-bar";
+
+const PLACEHOLDERS = ["Share your thoughts...", "What's on your mind?", "Type something..."];
+const [text, setText] = useState("");
+
+<AnimatedInputBar placeholders={PLACEHOLDERS} value={text} onChangeText={setText} animationInterval={900} />
+```
 
 ## Button
 **Deps:** `react-native-reanimated`, `react-native-worklets`, `expo-linear-gradient`
@@ -31,6 +39,16 @@ npx reacticx add button
 | `animationDuration` | `number` | `250` | Animation ms |
 | `disabled` | `boolean` | false | Disabled state |
 | `showLoadingIndicator` | `boolean` | false | Show spinner |
+```tsx
+import { Button } from "@/components/base/button";
+
+<Button isLoading={loading} onPress={onPress} loadingText="Fetching..." showLoadingIndicator>
+  <View style={{ flexDirection: "row", gap: 10, padding: 16 }}>
+    <Ionicons name="arrow-forward" size={18} color="black" />
+    <Text>Click Me!</Text>
+  </View>
+</Button>
+```
 
 ## CheckBox
 **Deps:** `react-native-reanimated`, `react-native-svg`
@@ -58,6 +76,15 @@ Compound: `FlipCard`, `FlipCard.Front`, `FlipCard.Back`, `FlipCard.Trigger`
 | `animationDuration` | `number` | `600` | Flip duration ms |
 | `enableHaptics` | `boolean` | `true` | Haptic feedback |
 | `scaleOnPress` | `boolean` | `true` | Scale on press |
+```tsx
+import { FlipCard } from "@/components";
+
+<FlipCard width={340} height={320} animationDuration={700} borderRadius={16} enableHaptics blurTint="dark">
+  <FlipCard.Front>{/* Front content */}</FlipCard.Front>
+  <FlipCard.Back>{/* Back content */}</FlipCard.Back>
+  <FlipCard.Trigger asChild={false} />
+</FlipCard>
+```
 
 ## OTP Input
 **Deps:** `react-native-reanimated`
@@ -125,6 +152,17 @@ Compound: `ScrollableSearch`, `.ScrollContent`, `.Overlay`, `.FocusedScreen`
 |------|------|---------|-------------|
 | `enableBlur` | `boolean` | `true` | Blur background |
 | `maxBlurIntensity` | `number` | `80` | Max blur |
+```tsx
+import { ScrollableSearch, useScrollableSearch } from "@/components/base/scrollable-search";
+
+<ScrollableSearch>
+  <ScrollableSearch.ScrollContent>{/* Scrollable content */}</ScrollableSearch.ScrollContent>
+  <SearchBarComponent />
+  <ScrollableSearch.Overlay>
+    <ScrollableSearch.FocusedScreen>{/* Search results */}</ScrollableSearch.FocusedScreen>
+  </ScrollableSearch.Overlay>
+</ScrollableSearch>
+```
 
 ## Search Bar
 **Deps:** `react-native-reanimated`, `@expo/vector-icons`, `react-native-worklets`, `expo-blur`, `expo-symbols`
@@ -201,3 +239,10 @@ npx reacticx add theme-switch
 | `children` | `ReactNode` | Required | App content |
 
 Supports: Circular, CircularInverted, Wipe, WipeRight, WipeDown, WipeUp.
+```tsx
+import { ThemeSwitcher, AnimationType, ThemeMode } from "@/components/organisms/theme-switch";
+
+<ThemeSwitcher theme={theme} onThemeChange={setTheme} animationType={AnimationType.Circular}>
+  {/* Your app content */}
+</ThemeSwitcher>
+```
